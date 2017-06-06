@@ -1,0 +1,174 @@
+
+%-----------------------------------------------------------------------------
+%% Improved layout options
+%% use 'geometry' package for individual setting
+\usepackage{fullpage}
+%\usepackage[paper=a4paper,left=60mm,right=20mm,top=25mm,bottom=25mm]{geometry}
+\usepackage{setspace}
+\onehalfspacing %1.5 line spacing
+\setlength{\parindent}{10pt}%
+\setlength{\parskip}{5pt}%
+%-----------------------------------------------------------------------------
+%% AMS-LaTeX for advanced mathematical options.
+%% Changing the Theorem-environment, etc.
+\usepackage{amsmath,amsthm}%
+%\numberwithin{equation}{section}%
+\allowdisplaybreaks[1]%
+%-----------------------------------------------------------------------------
+%% Advanced mathematical symbols (\mathds{},\mathbb{},\mathscr{})
+%% and remedy for the scaling problem in formulae
+\usepackage{dsfont,amssymb,mathrsfs,stackrel}
+\usepackage{exscale}
+%-----------------------------------------------------------------------------
+%% US and German hyphenation patterns; last language
+%% option is activated, use \selectlanguage{} to change
+\usepackage[german]{babel}
+%-----------------------------------------------------------------------------
+%% Package for bibliography
+\usepackage{natbib}
+%-----------------------------------------------------------------------------
+%% Nicely format and linebreak URLs in the bibliography (and elsewhere)
+\usepackage{url}
+%-----------------------------------------------------------------------------
+%% Replace the standard Computer Modern Typewritter font
+%% LaTeX uses for monospace text with PostScript Adobe Courier
+\usepackage{courier}
+%-----------------------------------------------------------------------------
+%% Package for ß and ä,ü,ö
+\usepackage[T1]{fontenc}
+\usepackage[ansinew]{inputenc}
+%-----------------------------------------------------------------------------
+%% Standard graphics support. Always use 'graphicx' instead
+%% of the older version 'graphics'
+%% The color package is part of the Standard LaTeX Graphics Bundle along with
+%% graphicx.
+\usepackage[dvips]{graphicx,epsfig,color}
+%-----------------------------------------------------------------------------
+%% Better pictures
+\usepackage{pst-all}% PSTricks
+%\usepackage{pst-func}% Plotting special math functions
+\usepackage{pstricks-add}% Update of PSTricks for \psbrace
+\usepackage{multido}% accompanying package for PSTricks
+\usepackage{pdftricks}
+\usepackage{pstricks}
+%-----------------------------------------------------------------------------
+%% Packages for improved floating figures and tables
+\usepackage{float}
+\usepackage{fancybox}
+\usepackage[small,normal,bf,up]{caption2}
+\captionstyle{center}
+\renewcommand\captionlabelfont{\bfseries}
+\usepackage{rotating}
+\usepackage{subfigure}
+\usepackage{multirow}
+\usepackage{longtable}
+\usepackage{booktabs}
+%-----------------------------------------------------------------------------
+%% Packages for displaying MATLAB code and colors.
+\usepackage{alltt}% for matlab code display
+\usepackage{boxedminipage}% for framing program code
+%-----------------------------------------------------------------------------
+
+
+
+%----------------------------------------------------------------------------
+%----------------------------------------------------------------------------
+%----------------------------------------------------------------------------
+%%%%%%%%%%%%%%%%%%%
+% change commands %
+%%%%%%%%%%%%%%%%%%%
+\renewcommand{\captionfont}{\small\slshape}% changes the style of caption
+\renewcommand{\arraystretch}{1}% shortens distance between rows
+\renewcommand{\qedsymbol}{$\blacksquare$}% substitute black square as new QED symbol
+\renewcommand{\emptyset}{\varnothing}% new symbol for empty set
+\renewcommand{\ge}{\geqslant}% new symbol for \ge
+\renewcommand{\le}{\leqslant}% new symbol for \le
+\renewcommand{\Pr}[1]{\text{Pr}\hspace*{-0.25ex}\left(#1\right)}% short-cut for probability operator
+\renewcommand{\c}{{\mathsf{C}}}% short-cut for complement sign
+\renewcommand{\d}{\,\text{d}}% short-cut for differential sign
+\renewcommand{\limsup}{\mathop{\text{limsup}}}% short-cut for limsup
+\renewcommand{\liminf}{\mathop{\text{liminf}}}% short-cut for liminf
+\renewcommand{\arg}{\mathop{\text{arg}}}% short-cut for arg-operator
+\renewcommand{\P}{{\mathbb{P}}}% short-cut for empirical measure
+\renewcommand{\i}{\text{i}}% new symbol for \i
+\renewcommand{\vec}{\text{vec}}% new symbol for vec-command
+
+
+%----------------------------------------------------------------------------
+%----------------------------------------------------------------------------
+%----------------------------------------------------------------------------
+%%%%%%%%%%%%%%%%
+% new commands %
+%%%%%%%%%%%%%%%%
+%% Define Cartesian product on a countable index set
+\DeclareSymbolFont{largesymbolsA}{U}{txexa}{m}{n}
+\DeclareMathSymbol{\varprod}{\mathop}{largesymbolsA}{"10}
+%% Define new caligraphical letters in math mode
+\DeclareSymbolFont{rsfs}{U}{rsfs}{m}{n}
+\DeclareSymbolFontAlphabet{\mathrsfs}{rsfs}
+\newcommand{\mstring}[1]{\textcolor[named]{Orchid}{#1}}% matlab strings
+\newcommand{\mkeyword}[1]{\textcolor[named]{Blue}{#1}}% matlab keywords
+\newcommand{\mcomment}[1]{\textcolor[named]{OliveGreen}{#1}}% matlab comments
+\newcommand{\N}{\mathds{N}}% Natural numbers
+\newcommand{\Z}{\mathds{Z}}% Integer numbers
+\newcommand{\Q}{\mathds{Q}}% Rational numbers
+\newcommand{\R}{\mathds{R}}% Real numbers
+\newcommand{\C}{\mathds{C}}% Complex numbers
+\newcommand{\HS}{\mathds{H}}% Hilbert Space
+\newcommand{\BS}{\mathds{B}}% Banach Space
+\newcommand{\F}{\mathbb{F}}% EDF
+\newcommand{\G}{\mathbb{G}}% Gaussian process
+\newcommand{\T}{\mathsf{T}}% tranposition sign
+\newcommand{\EE}{\text{\textit{EE}}}% short-cut for EE in equations
+\newcommand{\ML}{\text{\textit{ML}}}% short-cut for ML in equations
+\newcommand{\MM}{\text{\textit{MM}}}% short-cut for MM in equations
+\newcommand{\OLS}{\text{\textit{OLS}}}% short-cut for OLS in equations
+\newcommand{\TSLS}{\text{\textit{2SLS}}}% short-cut for 2SLS in equations
+\newcommand{\IV}{\text{\textit{IV}}}% short-cut for IV in equations
+\newcommand{\GMM}{\text{\textit{GMM}}}% short-cut for GMM in equations
+\newcommand{\EL}{\text{\textit{EL}}}% short-cut for EL in equations
+\newcommand{\figtext}[1]{\begin{spacing}{1}\footnotesize #1\end{spacing}}% short-cut for figure text
+\newcommand{\E}[1]{\text{E}\hspace*{-0.25ex}\left[\,#1\,\right]}% short-cut for e-operator
+\newcommand{\Ep}[2]{\text{E}_{#1}\hspace*{-0.25ex}\left[\,#2\,\right]}% short-cut for e-operator with parameter
+\newcommand{\Var}[1]{\text{Var}\hspace*{-0.25ex}\left[\,#1\,\right]}% short-cut for variance operator
+\newcommand{\Cov}[1]{\text{Cov}\hspace*{-0.25ex}\left[\,#1\,\right]}% short-cut for covariance operator
+\newcommand{\Corr}[1]{\text{Corr}\hspace*{-0.25ex}\left[\,#1\,\right]}% short-cut for correlation operator
+\newcommand{\ND}[1]{\text{N}\hspace*{-0.25ex}\left(\,#1\,\right)}% short-cut for normal distribution
+\newcommand{\bm}[1]{\boldsymbol{#1}}% short-cut for \boldsymbol{}
+\newcommand{\bbm}[1]{\mathbb{#1}}% short-cut for \mathbb{}
+\newcommand{\bfm}[1]{\mathbf{#1}}% short-cut for \mathbf{}
+\newcommand{\cm}[1]{\mathcal{#1}}% short-cut for \mathcal{}
+\newcommand{\sm}[1]{\mathscr{#1}}% short-cut for \mathscr{}
+\newcommand{\fm}[1]{\mathfrak{#1}}% short-cut for for \mathfrak{}
+\newcommand{\sfm}[1]{\mathsf{#1}}% short-cut for \mathsf{}
+\newcommand{\mr}[1]{\mathring{#1}}% short-cut for \mathring{}
+\newcommand{\mcode}[1]{\texttt{\bfseries #1}}% short-cut for \mcode{}
+\newcommand{\sq}{\hfill $\square$}% short-cut for end-of-definition symbol
+\newcommand{\ol}[1]{\overline{#1}}% short-cut for \overline{}
+\newcommand{\ul}[1]{\underline{#1}}% short-cut for \underline{}
+\newcommand{\noin}{\noindent}% short-cut for no indentation
+\newcommand{\argmin}{\mathop{\text{argmin}}}% short-cut for argmin-operator
+\newcommand{\argmax}{\mathop{\text{argmax}}}% short-cut for argmax-operator
+\newcommand{\arginf}{\mathop{\text{arginf}}}% short-cut for arginf-operator
+\newcommand{\argsup}{\mathop{\text{argsup}}}% short-cut for argsup-operator
+\newcommand{\plim}{\mathop{\text{plim}}}% short-cut for plim
+\newcommand{\iid}{\text{i.i.d.}}% short-cut for i.i.d. in equations
+\newcommand{\ra}{\rightarrow}% short-cut for right arrow
+\newcommand{\nea}{\nearrow}% short-cut for NorthEast arrow
+\newcommand{\sea}{\searrow}% short-cut for SouthEast arrow
+\newcommand{\dx}{\text{d}x}% short-cut for dx
+\newcommand{\sgn}{\text{sgn}}% short-cut for sign function
+\newcommand{\intr}{\text{int}}% short-cut for interior operator
+\newcommand{\ext}{\text{ext}}% short-cut for interior operator
+\newcommand{\cl}{\text{cl}}% short-cut for closure operator
+\newcommand{\spa}{\text{span}}% short-cut for span operator
+\newcommand{\e}{\text{e}}% short-cut for exponential number
+\newcommand{\tr}{\text{tr}}% short-cut for trace-operator
+\newcommand{\rk}{\text{rk}}% short-cut for rank-operator
+\newcommand{\diag}{\text{diag}}% short-cut for diag-operator
+
+
+%----------------------------------------------------------------------------
+%----------------------------------------------------------------------------
+%----------------------------------------------------------------------------
+%\begin{document}%

@@ -1,0 +1,466 @@
+\documentclass[a4paper,12pt]{article}
+\input{preamble_article}%
+
+%----------------------------------------------------------------------------
+%----------------------------------------------------------------------------
+%----------------------------------------------------------------------------
+
+% {\noindent%
+% LMU München \hfill Übung zur Ökonometrie I\\%
+% Institut für Statistik \hfill WS 2009/10\\%
+% Seminar für Finanzökonometrie \hfill serkan.yener@stat.uni-muenchen.de%
+% }\vspace*{0.5cm}%
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhead{}
+%\lfoot{\footnotesize \sf  Einführung in die Ökonometrie, Wintersemester 15/16}
+\cfoot{}
+\rfoot{\footnotesize \sf \thepage}
+\renewcommand{\headrulewidth}{0pt}
+\newcommand\HRule{\noindent\rule{\linewidth}{2pt}}
+\newcommand\HRuleTwo{\noindent\rule{\linewidth}{1pt}}
+
+\newtheoremstyle{ex}
+{\topsep}{\topsep} % Abstand nach oben und unten
+{\normalfont} % Textlayout
+{0pt}% Überschrift Einzug
+{\sffamily \bfseries}{} % Font und Satzzeichen danach
+{\newline} % Abstand nach Überschrift
+{} % Überschriftenspezifikation
+
+
+\theoremstyle{ex}
+\newtheorem{Exercise}{Aufgabe}
+
+
+%----------------------------------------------------------------------------
+%----------------------------------------------------------------------------
+%----------------------------------------------------------------------------
+
+\begin{document}
+
+\noindent \HRule
+
+\noindent {\sf \textbf{Ökonometrie}} \hfill {\sf \textbf{Sommersemester 2017}} \\ 
+{\sf \textbf{Stefan Mittnik, Elizabeth Heller}} \hfill {\sf \textbf{Blatt 3}} 
+%{\sf \textbf{L\"{o}sungsvorschl\"{a}ge: Serkan Yener}} 
+\noindent \HRule
+
+%\setcounter{page}{3}
+
+\rmfamily
+
+%% \begin{center}
+%% {\Large \bf Aufgabenblatt 7:\vspace*{0.25cm}\\%
+%%             Problem autokorrelierter Störgrößen}%
+%% \end{center}\vspace*{0.75cm}%
+
+
+
+\noin%
+\begin{Exercise}
+Für eine Stichprobe von Zeitreihendaten wird die Regressionsgleichung
+           \[
+           y_t=\beta_1+\beta_2x_{t2}+\beta_3x_{t3}+u_t
+           \qquad\text{für}\quad t=1,\ldots,100
+           \]
+           geschätzt. In Abbildung~\ref{fig:Autocorrelation} wurden die aus der KQ-Schätzung
+           gewonnenen Residuen $\hat{u}_t$ in einem Zeitreihendiagramm (a) bzw.
+           aufeinanderfolgende Residuen in einem Streuungsdiagramm (b) abgetragen.
+
+           \begin{figure}[h!]%
+           \centering%
+           \hspace*{-1.5cm}\parbox{19cm}{%
+           \caption[]%
+           {Beispiel für Residuen $\hat{u}_t$ eines linearen Regressionsmodells.}%
+           \figtext{}\vspace*{0.25cm}%
+           \subfigure[Zeitreihendiagramm der Residuen $\hat{u}_t$]{%
+              \includegraphics[width=9.5cm,height=8.5cm]%
+                 {ex7_fig1.eps}%
+              }%
+           \subfigure[Streuungsdiagramm von $\hat{u}_t$ vs. $\hat{u}_{t-1}$]{%
+              \includegraphics[width=9.5cm,height=8.5cm]%
+                 {ex7_fig2.eps}%
+              }%
+           \label{fig:Autocorrelation}%
+           }%
+           \end{figure}%
+
+           Welche Eigenschaft der vorliegenden Stichprobe vermuten Sie und was für Probleme
+           gehen damit einher?
+
+           Welche Rolle bei der Erklärung des vermuteten Phänomens
+           spielt die Kennzahl
+           \[
+           \hat{\rho}=\frac{\sum^{100}_{t=2}\hat{u}_t\hat{u}_{t-1}}{\sum^{100}_{t=2}
+           \hat{u}_{t-1}^2}=0.8428 \; ?
+           \]
+
+           Wenn $\sqrt{T}(\hat{\rho}-\rho)\xrightarrow{d}\ND{0,1-\rho^2}$ gilt, wie könnte
+           ein primitiver Test zum Signifikanzniveau 5\% bezüglich des vermuteten Phänomens
+           aussehen und wie würde er ausfallen?
+
+           \underline{\bf Lösungsvorschlag:} Die beiden Diagramm in
+           Abbildung~\ref{fig:Autocorrelation} deuten auf einen gewissen Grad an
+           Verharrungsvermögen der Residuen hin, d.h. positive (negative) Residuen tendieren dazu,
+           auf positive (negative) Residuen zu folgen. Es ist hilfreich sich hierfür als Kontrast
+           die entsprechenden Diagramme von 100 \textit{iid} Zufallsvariablen zu betrachten, deren
+           Erwartungswerte bzw. Varianzen mit dem Stichprobenmittelwert bzw. der -varianz von
+           $\hat{u}_t$ übereinstimmen. In Diagramm (a) von Abbildung~\ref{fig:Ideal Disturbances}
+           ist die Zeitreihe dieser ``idealisierten'' Störgrößen abgetragen. Offensichtlich
+           besitzt die Zeitreihe der idealisierten Störgrößen keine vergleichbare Persistenz,
+           sondern schwankt erratisch um die Abszisse. Ursächlich hierfür ist die Annahme, dass
+           die ``idealisierten'' Störgrößen unkorreliert sind. Ebenso zeigt Diagramm (b) in
+           Abbildung~\ref{fig:Ideal Disturbances}, dass wohl kein (statistisch signifikanter)
+           linearer Zusammenhang zwischen aufeinander folgenden ``idealisierten'' Störgrößen
+           existiert.
+
+           \begin{figure}[h!]%
+           \centering%
+           \hspace*{-1.5cm}\parbox{19cm}{%
+           \caption[]%
+           {Beispiel für ``idealisierte'' Residuen $\hat{\epsilon}_t$.}%
+           \figtext{Die ``idealisierten'' Residuen $\hat{\epsilon}_t$ sind so konstruiert, dass
+           zwar $\E{\hat{\epsilon}_t}=\bar{\hat{u}}$ (Mittelwert 0) und
+           $\Var{\hat{\epsilon}_t}=\hat{\sigma}^2_{\hat{u}_t}$ (keine Heteroskedastizität) gilt,
+           jedoch wurde---abweichend von
+           $\hat{u}_t$---$\Cov{\hat{\epsilon}_t,\hat{\epsilon}_{t-1}}=0$ (keine Autokorrelation)
+           angenommen.}\vspace*{0.25cm}%
+           \subfigure[Zeitreihendiagramm ``idealisierter'' Störgrößen $\hat{\epsilon}_t$]{%
+              \includegraphics[width=9.5cm,height=8.5cm]%
+                 {ex7_fig3.eps}%
+              }%
+           \subfigure[Streuungsdiagramm von $\hat{\epsilon}_t$ vs. $\hat{\epsilon}_{t-1}$]{%
+              \includegraphics[width=9.5cm,height=8.5cm]%
+                 {ex7_fig4.eps}%
+              }%
+           \label{fig:Ideal Disturbances}%
+           }%
+           \end{figure}%
+
+           Diese Persistenz nennt man Autokorrelation und ist in den meisten Fällen ein
+           Resultat einer Modellfehlspezifikation. Diese kann wiederum aus einer falschen
+           funktionalen Form, einem systematischen Messfehler der endogenen Variablen
+           und/oder dem Fehlen einer oder mehrerer (exogener) Variablen entstanden sein.
+           Üblicherweise wird eine fehlende, autokorrelierte Exogene von der Störgröße
+           absorbiert, welche dann durch ein ähnliches, dynamisches Verhalten gekennzeichnet
+           ist. Ist es nicht möglich, diese Variable zu identifizieren oder ihren Einfluss
+           zu eliminieren, so ist die Annahme unkorrelierter Störgrößen des klassischen,
+           linearen Regressionsmodell aus Aufgabenblatt~1 verletzt. Insbesondere sind die
+           Einträge der Kovarianzmatrix der Störgrößen jenseits der Hauptdiagonalen nun
+           nicht mehr 0. Damit gelten wiederum die Erkenntnisse aus Aufgabenblatt~5, dass
+           der KQ-Schätzer $\bm{\hat{\beta}}_{KQ}$ zwar noch erwartungstreu und konsistent,
+           jedoch nicht mehr effizient im Sinne vom Gauss-Markov ist.
+
+           Für die Formulierung eines effizienten Schätzers benötigt man zunächst ein
+           geeignetes statistisches Modell, das z.B. folgendermaßen lauten könnte:
+           \begin{align*}
+           y_t &= \beta_1+\beta_2x_{t2}+\beta_3x_{t3}+u_t\\
+           u_t &= \rho u_{t-1}+\epsilon_t
+           \end{align*}
+           für $t=1,\ldots,T$ mit $\bm{\epsilon}\sim\ND{\bm{0}_{T\times1},\sigma^2\bm{I}_T}$,
+           wobei $u_0$ als bekannt oder als $u_0=0$ angenommen wird. Man bezeichnet dieses
+           Modell als lineares Regressionsmodell mit autokorrelierten Störgrößen 1.Ordnung.
+           Obwohl dieses Modell den einfachsten Fall autokorrelierter Störgrößen darstellt,
+           hat es sich jedoch in ökonomischen Anwendungen als eines der wichtigsten Modelle
+           herausgestellt. Die Schlüsselgröße dieses Modells ist $\rho$: Der
+           Korrelationskoeffizient, der den linearen Zusammenhang zwischen $u_t$ und $u_{t-1}$
+           misst. Damit dieses Modell überhaupt wohldefiniert ist, muss man die Restriktion
+           $\vert\rho\vert<1$ auferlegen, da der Störgrößenprozess $u_t$ sonst nicht (schwach)
+           stationär ist. Ein einfacher Test auf Autokorrelation 1.~Ordnung kann dann
+           \[
+           \text{H}_0:\rho=0
+           \qquad\text{vs.}\qquad
+           \text{H}_1:\rho\not=0
+           \]
+           lauten. Da der wahre Wert von $\rho$ nicht bekannt ist, muss er durch sein
+           Stichprobenpendant $\hat{\rho}$ ersetzt werden. Unter der vorgegebenen
+           Verteilungsannahme kann die folgende (asymptotische) Teststatistik konstruiert
+           werden:
+           \[
+           \sqrt{T}\frac{\hat{\rho}-\rho}{\sqrt{1-\rho^2}}=
+           \frac{\hat{\rho}-\rho}{\sqrt{(1-\rho^2)/T}}\stackrel{\mbox{\tiny asy.}}{\sim}
+           \ND{0,1} \; .
+           \]
+           Bei Gültigkeit der Nullhypothese
+           $\text{H}_0:\rho=0$ in der Realität folgt die vereinfachte Teststatistik
+           \[
+           Z:=\sqrt{T}\hat{\rho}\stackrel{\text{asy.}}{\sim}\ND{0,1}
+           \; .
+           \]
+           Ähnlich dem Vorgehen bei $t$-Tests in Aufgabenblatt~2, verwenden wir an dieser Stelle
+           die Symmetrieeigenschaft der Normalverteilung, so dass der ursprüngliche Test
+           äquivalent ist zum Test darüber, ob $|Z|$ im (positiven) kritischen Bereich liegt, also
+           ob $|Z|$ das rechte Quantil $Z_{krit}=\Phi^{-1}(1-\alpha/2)$ überschreitet.\\
+           \underline{Hypothese:}
+           \[
+           \text{H}_0:\rho=0
+           \qquad\text{vs.}\qquad
+           \text{H}_1:\rho\not=0 \; .
+           \]
+           \underline{Teststatistik:}
+           \[
+           Z=\sqrt{T}\hat{\rho}=\sqrt{100}\cdot0.8428=8.428 \; .
+           \]
+           \underline{Kritischer Wert:}
+           \[
+           Z_{krit}=\Phi^{-1}(1-\alpha/2)=
+           \Phi^{-1}(0,975)=1,960 \; .
+           \]
+           \underline{Testentscheidung:} $\text{H}_0$ wird abgelehnt, da $Z_{krit}=1,960<8.428=Z$,
+           d.h. die Störgrößen sind autokorreliert.
+\end{Exercise}
+\begin{Exercise}
+Welcher Zusammenhang besteht zwischen dem Test aus Teilaufgabe (a) und dem
+           Durbin-Watson Test? Bestimmen Sie den Wert der Durbin-Watson Teststatistik $DW$ anhand
+           der Informationen aus Teilaufgabe (a)!
+
+           \underline{\bf Lösungsvorschlag:} Der in Teilaufgabe (a) benutzte Test ist ein
+           asymptotischer Test, der in kleinen Stichproben problematisch sein kann. Genauer
+           gesagt, hat dieser Test eine schlechte \textit{Power} gegenüber Autokorrelationstest
+           für endliche Stichproben. Als die Power eines Tests kann man seine Eigenschaft oder
+           Fähigkeit verstehen, die Nullhypothese abzulehnen, wenn sie in der Realität falsch ist.
+           haben die Teststatistik
+           \[
+           DW=\frac{\sum^T_{t=2}\bigl(\hat{u}_t-\hat{u}_{t-1}\bigr)^2}{\sum^T_{t=1}\hat{u}_t^2}
+           \]
+           zum Testen von Autokorrelation 1.~Ordnung in den Residuen vorgeschlagen. Für diese
+           Teststatistik konnten sie eine Wahrscheinlichkeitsverteilung in endlichen Stichproben
+           herleiten. Jedoch gelang es nicht kritische Werte zur Partitionierung des Wertebereichs
+           in Annahme- und Ablehnungsbereich zu bestimmen, sondern lediglich obere und untere
+           Schranken für $DW$. Für den Zusammenhang zwischen
+           \[
+           \hat{\rho}=\frac{\sum^T_{t=2}\hat{u}_t\hat{u}_{t-1}}
+           {\sum^T_{t=2}\hat{u}_{t-1}^2}
+           \]
+           und $DW$ formt man
+           zunächst die Durbin-Watson Teststatistik um
+           \begin{align*}
+           DW &= \frac{\sum^T_{t=2}\bigl(\hat{u}_t-\hat{u}_{t-1}\bigr)^2}{\sum^T_{t=1}\hat{u}_t^2}=
+                 \frac{\sum^T_{t=2}\bigl(\hat{u}_t^2+\hat{u}_{t-1}^2-2\hat{u}_t\hat{u}_{t-1}\bigr)}{\sum^T_{t=1}\hat{u}_t^2}\\
+              &= \frac{\sum^T_{t=2}\hat{u}_t^2+\hat{u}_1^2-\hat{u}_1^2+\sum^T_{t=2}\hat{u}_{t-1}^2+\hat{u}_T^2-\hat{u}_T^2
+                 -2\sum^T_{t=2}\hat{u}_t\hat{u}_{t-1}}{\sum^T_{t=1}\hat{u}_t^2}\\
+              &= \frac{\sum^T_{t=1}\hat{u}_t^2-\hat{u}_1^2+\sum^T_{t=1}\hat{u}_t^2-\hat{u}_T^2-2\sum^T_{t=2}\hat{u}_t\hat{u}_{t-1}}
+                 {\sum^T_{t=1}\hat{u}_t^2}\\
+              &= \frac{2\sum^T_{t=1}\hat{u}_t^2}{\sum^T_{t=1}\hat{u}_t^2}
+                 -2\frac{\sum^T_{t=2}\hat{u}_t\hat{u}_{t-1}}{\sum^T_{t=1}\hat{u}_t^2}
+                 -\frac{\hat{u}_1^2+\hat{u}_T^2}{\sum^T_{t=1}\hat{u}_t^2}\\
+              &= 2-2\frac{\sum^T_{t=2}\hat{u}_t\hat{u}_{t-1}}{\sum^T_{t=2}\hat{u}_{t-1}^2}
+                 \frac{\sum^T_{t=2}\hat{u}_{t-1}^2}{\sum^T_{t=1}\hat{u}_t^2}
+                 -\frac{\hat{u}_1^2+\hat{u}_T^2}{\sum^T_{t=1}\hat{u}_t^2}\\
+              &= 2-2\hat{\rho}\frac{\sum^T_{t=2}\hat{u}_{t-1}^2}{\sum^T_{t=1}\hat{u}_t^2}
+                 -\frac{\hat{u}_1^2+\hat{u}_T^2}{\sum^T_{t=1}\hat{u}_t^2}
+           \end{align*}
+           und betrachtet den Fall, dass der Stichprobenumfang $T$ groß ist, dann gilt die
+           Approximation
+           \[
+           \widetilde{DW}\approx2-2\hat{\rho}=2(1-\hat{\rho}) \; ,
+           \]
+           weil dann
+           \[
+           \frac{\sum^T_{t=2}\hat{u}_{t-1}^2}{\sum^T_{t=1}\hat{u}_t^2}\approx1
+           \qquad\text{und}\qquad
+           \frac{\hat{u}_1^2+\hat{u}_T^2}{\sum^T_{t=1}\hat{u}_t^2}\approx0
+           \]
+           gilt. Demnach ergibt sich $\widetilde{DW}=2(1-0.8428)=0.3144$. Aus dieser Beziehung lassen
+           sich auch die Extreme der DW-Teststatistik erkennen, denn, da wir $\rho$ auf das Interval
+           $-1<\rho<+1$ beschränkt haben, sollte $0<DW,\widetilde{DW}<4$ gelten. Vgl.
+           Abbildung 3.
+
+%\vspace{4cm}
+           \begin{figure}[h!]%
+           \centering%
+           \parbox{10cm}{%
+              \caption[]%
+              {Durbin-Watson Teststatistik \& Stichprobenautokorrelation.}%
+              \figtext{}\vspace*{0cm}%
+              \centering%
+              \psset{xunit=1cm,yunit=1cm}%
+           %  =============================================================
+              \begin{pspicture}(0,0)(10,3)%
+              %\psgrid[subgriddiv=1,griddots=10,gridlabels=7pt](0,0)(10,3)%
+              \psline[linewidth=1.5pt]{o-o}(2.5,1.5)(7.5,1.5)
+              \rput(2.5,1.1){\footnotesize 0}
+              \rput(2.5,0.5){\footnotesize $\hat{\rho}\approx+1$}
+              \rput(2.5,2){\footnotesize positive AK}
+              \psline[linewidth=1pt](5,1.4)(5,1.6)
+              \rput(5,1.1){\footnotesize 2}
+              \rput(5,0.5){\footnotesize $\hat{\rho}\approx0$}
+              \rput(5,2){\footnotesize keine AK}
+              \rput(7.5,1.1){\footnotesize 4}
+              \rput(7.5,0.5){\footnotesize $\hat{\rho}\approx-1$}
+              \rput(7.5,2){\footnotesize negative AK}
+              \end{pspicture}%
+           %  ==============================================================
+              \label{fig:Durbin Watson & Sample Autocorrelation Coefficient}%
+           }%
+           \end{figure}%
+\end{Exercise}
+\begin{Exercise}
+Beschreiben Sie das grundlegende Problem des Durbin-Watson Tests! Führen Sie den
+           Durbin-Watson Test zum Signifikanzniveau 5\% anhand von $\widetilde{DW}$ und
+           $DW=0.3083$ durch! Welche Hypothesen sind insbesondere für die Praxis relevant?
+
+           \underline{\bf Lösungsvorschlag:} Die Durbin-Watson Teststatistik unterscheidet sich
+           auf fundamentale Weise von den bisher verwendeten Teststatistiken. Während für die
+           Verteilung der $t$- und $F$-Teststatistiken lediglich die Anzahl der Freiheitsgrade
+           ausschlaggebend waren, hängt die Verteilung der Durbin-Watson Teststatistik direkt von
+           den Regressoren $\bm{X}$ ab. Um dies zu erkennen, definiert man zunächst die Matrix
+           \[
+           \bm{A}=
+           \left[\begin{array}{rrrrrr}
+            1      &      -1 &      0 & \cdots & \cdots &      0\\
+           -1      &       2 &     -1 &      0 &        & \vdots\\
+            0      &      -1 &      2 & \ddots & \ddots & \vdots\\
+            \vdots &       0 & \ddots & \ddots & \ddots &      0\\
+            \vdots &         & \ddots & \ddots &      2 &     -1\\
+            0      & \cdots  & \cdots &      0 &     -1 &      1
+           \end{array}\right]
+           \; ,
+           \]
+           so dass die Durbin-Watson Teststatistik umgeschrieben werden kann als
+           \[
+           DW=\frac{\bm{\hat{u}}'\bm{A}\bm{\hat{u}}}{\bm{\hat{u}}'\bm{\hat{u}}}
+             =\frac{(\bm{M}\bm{u})'\bm{A}(\bm{M}\bm{u})}{(\bm{M}\bm{u})'(\bm{M}\bm{u})}
+             =\frac{\bm{u}'\bm{M}\bm{A}\bm{M}\bm{u}}{\bm{u}'\bm{M}\bm{u}}
+           \; .
+           \]
+           \citet{Durbin_Watson_1950} haben dann gezeigt, dass sich dieser Ausdruck als
+           \[
+           DW=\frac{\sum^{T-k}_{t=1}\lambda_tz_t^2}{\sum^{T-k}_{t=1}z_t^2}
+           \]
+           formulieren lässt, wobei $\lambda_1,\ldots,\lambda_{T-k}$ die von Null verschiedenen
+           Eigenwerte der Matrix $\bm{M}\bm{A}\bm{M}$ und $z_1,\ldots,z_{T-k}$ unabhängige
+           $\ND{0,\sigma^2}$-Zufallsvariablen sind. Während man den Nenner wieder (nach
+           Standardisierung) als eine $\chi^2(T-k)$-verteilte Zufallsvariable begreifen kann, gilt
+           dies nicht für den Zähler. Außerdem kann man zeigen, dass Zähler und Nenner nicht mehr
+           unabhängig voneinander sind, weshalb sich der übliche ``$F$-Verteilungsverdacht'' hier
+           nicht bestätigt. Jedoch ist die Abhängigkeit der Eigenwerte $\lambda_t$ von $\bm{X}$
+           ein wesentlich schwerwiegenderes Problem. Für einen gegebenen Datensatz $\bm{X}$ lassen
+           sich mit den in Durbin and Watson (1950) und Durbin and Watson (1971) diskutierten
+           Verfahren die Verteilung von $DW$ in endlichen Stichproben approximieren. 
+
+           % ein wesentlich schwerwiegenderes Problem. Für einen gegebenen Datensatz $\bm{X}$ lassen
+           % sich mit den in \citet{Durbin_Watson_1950} und \citet{Durbin_Watson_1971} diskutierten
+           % Verfahren die Verteilung von $DW$ in endlichen Stichproben approximieren. Bei der
+
+           Bei der heutigen Rechnerleistung ist es kein Problem mehr diese Verteilung und die
+           entsprechenden kritischen Werte exakt für einen gegebenen Datensatz zu berechnen. In
+           den 1950er Jahren war dies allerdings noch ein gravierendes Problem, so dass Durbin und
+           Watson sich darauf beschränken mussten, für ``extreme'' Realisationen der exogenen
+           Variablen in $\bm{X}$ eine untere Schranke $DW_U$ und eine obere Schranke $DW_O$ für
+           $DW$ zu berechnen. Diese Schranken wurden in Durbin and Watson (1951) erstmals
+           veröffentlicht und befinden sich teilweise auch in Tabelle~A.6 im Skript.
+
+% \citet{Durbin_Watson_1951}
+           
+           Ist eine Zeitreihe negativ autokorreliert ($-1<\rho<0$), so besitzt sie die Tendenz zu
+           periodischen Schwankungen, was bei ökonomischen (außer bei nicht-saisonbereinigten)
+           Daten eher selten zu beobachten ist. Von einem theoretischen Standpunkt aus betrachtet,
+           sollten sich die meisten ökonomischen Variablen langsam verändern, da sie diese
+           Veränderungen das Ergebnis von graduellen Anpassungsprozessen sind. Dieses
+           Verharrungsvermögen oder Persistenz lässt sich eher durch positive Autokorrelation
+           erklären. Da sich dies auch mit unserer graphischen Analyse des gegebenen Datensatzes
+           deckt, lautet der einseitige Hypothesentest demnach
+           \[
+           \text{H}_0:\rho=0
+           \qquad\text{vs.}\qquad
+           \text{H}_1:\rho>0 \; .
+           \]
+           Ist für den Durbin-Watson Test kein exakter kritischer Wert vorhanden, sondern
+           lediglich die untere und obere Schranke, so schiebt sich ein zusätzlicher
+           ``Unsicherheitsbereich'' zwischen Annahme- und Ablehnungsbereich. Vgl.
+           Abbildung 4.
+
+%\vspace{6cm}
+
+% ~\ref{fig:Durbin Watson Critical Region}
+
+           \begin{figure}[h!]%
+           \centering%
+           \parbox{10cm}{%
+              \caption[]%
+              {Durbin-Watson Teststatistik \& Stichprobenautokorrelation.}%
+              \figtext{}\vspace*{0cm}%
+              \centering%
+              \psset{xunit=1cm,yunit=1cm}%
+              \begin{pspicture}(0,0)(10,3)%
+              %\psgrid[subgriddiv=1,griddots=10,gridlabels=7pt](0,0)(10,3)%
+              \psline[linewidth=1.5pt]{o-o}(1.5,1.5)(8.5,1.5)
+              \psline[linewidth=2pt,linecolor=red]{[-]}(2.5,1.5)(4.5,1.5)
+              \rput(3.5,2){\tiny Unsicherheitsbereich}
+              \rput(2.6,1.1){\tiny $DW_U$}
+              \rput(4.5,1.1){\tiny $DW_O$}
+              \psdot[dotstyle=o,dotsize=7pt](2.5,1.5)
+              \rput(1.5,1.1){\footnotesize 0}
+              \rput(2,2){\footnotesize $\text{H}_1$}
+              \psline[linewidth=1pt](5,1.4)(5,1.6)
+              \rput(5,1.1){\footnotesize 2}
+              \rput(5.5,2){\footnotesize $\text{H}_0$}
+              \rput(8.5,1.1){\footnotesize 4}
+              \rput(2,0.5){\tiny $DW<DW_U$}
+              \rput(5.5,0.5){\tiny $DW_O<DW$}
+              \end{pspicture}%
+              \label{fig:Durbin Watson Critical Region}%
+           }%
+           \end{figure}%
+
+
+
+           Für einen Stichprobenumfang $T=100$ und zwei exogene Regressoren (ohne Konstante)
+           $k'=2$ ergibt sich aus Tabelle~A.6 eine untere Schranke von $DW_U=1.63$ und eine obere
+           Schranke von $DW_O=1.72$. Damit gilt
+           \begin{eqnarray*}
+           \widetilde{DW}=0.3144 & < & 1,63=DW_U\\
+           DW=0.3083             & < & 1,63=DW_U
+           \end{eqnarray*}
+           und wir lehnen die Nullhypothese ``keine Autokorrelation in den Störgrößen'' zum
+           Signifikanzniveau von 5\% ab.
+\end{Exercise}
+\begin{Exercise}
+Nennen Sie weitere Probleme des Durbin-Watson Tests! Welche Abhilfen kennen Sie?
+
+           \underline{\bf Lösungsvorschlag:} Außer der Freiheit von Autokorrelation setzt der
+           Durbin-Watson Test die Gültigkeit aller Annahmen des linearen Regressionsmodells
+           voraus---inklusive der Normalverteilung der Störgrößen. Die Annahme normalverteilter
+           Störgrößen lässt sich mit Hilfe des Zentralen Grenzwertsatzes umgehen, wenn man gewillt
+           ist, statt eines Tests für endliche Stichproben einen asymptotischen Test zu verwenden,
+           wie z.B. den Test von Breusch (1978) und Godfrey (1978) oder den Test von
+           Ljung and Box (1978). Dabei ist der Ljung-Box Test problematisch, da die Herleitung
+           aus einem reinen Zeitreihenmodell ohne exogene Regressoren erfolgte.
+
+           Ein weiterer Nachteil des Durbin-Watson Tests ist, dass die Regressionsgleichung
+           zwingend mit Absolutglied geschätzt worden sein muss, was bei den Tests von
+           Breusch-Godfrey und Ljung-Box nicht sein muss.
+
+           Weiter darf die Regressormatrix auch keine verzögerte endogene Variable
+           $(y_{t-1},y_{t-2},\ldots)$ enthalten. Dies kann ein wesentlicher Nachteil sein, weil
+           oftmals die Autokorrelation in den Störgrößen durch das Einführen einer verzögerten
+           Endogenen beseitigt werden kann, deren Fehlen dann als eine Fehlspezifikation
+           verstanden werden kann. Ein Test auf Autokorrelation der neuen Störgrößen ist dann mit
+           dem Durbin-Watson Test nicht mehr valide. Durbin (1970) hat mit seinem $h$-Test
+           eine mögliche Lösung dieses Problems bereit gestellt. Interessanterweise sind der
+           Breusch-Godfrey Test und Durbin's $h$-Test asymptotisch equivalent.
+
+           Schließlich ist der Durbin-Watson Test nur für das Testen auf Autokorrelation
+           1.~Ordnung angelegt. Damit lässt sich nicht bestimmen, ob lediglich Autokorrelation
+           1.~Ordnung oder aber auch höherer Ordnung vorliegt. Für den Fall saisonaler
+           Autokorrelation, welche z.B. in nicht-saisonbereinigten Quartalsdaten zu finden ist,
+           hat Wallis (1972) die Durbin-Watson Teststatistik erweitert, um auf
+           Autokorrelation 4.~Ordnung zu testen.
+\end{Exercise}
+
+
+%----------------------------------------------------------------------------
+%----------------------------------------------------------------------------
+
+
+\bibliography{refs}%
+\bibliographystyle{ims}%
+
+
+%----------------------------------------------------------------------------
+%----------------------------------------------------------------------------
+%----------------------------------------------------------------------------
+\end{document}

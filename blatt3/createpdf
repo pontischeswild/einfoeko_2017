@@ -1,0 +1,64 @@
+#!/bin/bash
+# use:
+# sh createpdf newblatt3
+
+if [ -e $1.bbl ] ; then
+	echo "Deleting $1.bbl"
+	rm $1.bbl
+fi
+
+
+if [ -e $1.blg ] ; then
+	echo "Deleting $1.blg"
+	rm $1.blg
+fi
+
+if [ -e $1.aux ] ; then
+	echo "Deleting $1.aux"
+	rm $1.aux
+fi
+
+
+if [ -e $1.log ] ; then
+	echo "Deleting $1.log"
+	rm $1.log
+fi
+
+latex $1
+bibtex $1
+latex $1
+latex $1
+dvips $1
+
+if [ -e $1.bbl ] ; then
+	echo "Deleting $1.bbl"
+	rm $1.bbl
+fi
+
+
+if [ -e $1.blg ] ; then
+	echo "Deleting $1.blg"
+	rm $1.blg
+fi
+
+if [ -e $1.aux ] ; then
+	echo "Deleting $1.aux"
+	rm $1.aux
+fi
+
+
+if [ -e $1.log ] ; then
+	echo "Deleting $1.log"
+	rm $1.log
+fi
+
+if [ -e $1.ps ] ; then
+    ps2pdf $1.ps
+fi
+
+if [ -e $1.pdf ] ; then
+    evince $1.pdf &
+fi
+
+
+exit 0
